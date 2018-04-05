@@ -6,12 +6,13 @@ var allEnemies = [ ];
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-		this.loc = (x, y);
+		this.locX = x;
+		this.locY = y;
 		this.speed = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-		//push enemy to allEnemies array 
+		//push enemy to allEnemies array
 		allEnemies.push(this);
 };
 
@@ -61,7 +62,26 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-
+/*
+Player.prototype.handleInput = function() {
+	if (keypress === 37) {
+   //move left
+   return this.locX -= 1;
+  } else if (keypress === 38) {
+   //move up
+   return this.locY += 1;
+  } else if (keypress === 39) {
+   //move right
+   return this.locX += 1;
+  } else if (keypress === 40) {
+   //move down
+   return this.locY, -= 1;
+  } else {
+   //don't move;
+   return;
+   }
+};
+    */
 
 // Now instantiate your objects.
 //enemy (x, y, speed)
