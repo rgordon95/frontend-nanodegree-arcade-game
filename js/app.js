@@ -15,19 +15,25 @@ var Enemy = function(x, y, speed) {
 		//push enemy to allEnemies array
 		allEnemies.push(this);
 };
-
+Enemy.prototype.checkCollisions = function() {
+	for (let i = 0; i < allEnemies.length; i++) {
+		if ((allEnemies[i].locX === player.locX) || (allEnemies[i].locY = player.locY)) {
+			return console.log('game over');
+		} else {
+			console.log('still alive');
+		}
+	}; //end forloop
+} // end checkCollisions
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // this.loc *moves at* this.speed
-		// You should multiply any movement by the dt parameter
-		//??? loc *= dt
+// You should multiply any movement by the dt parameter
+ 	this.locX *= dt;
+	this.locY *= dt;
 		// which will ensure the game runs at the same speed for
     // all computers.
-			//check if encountered enemy
-//		if (this loc = allEnemies[i].loc) {
-			//game over
-	//	}
+		//check if encountered enemy
+     Enemy.prototype.checkCollisions();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -39,20 +45,25 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
+		this.locX = 2;
+		this.locY = 0;
+		// Variables applied to each of our instances go here,
+		// we've provided one for you to get started
+
 };
 
 // Update the player's position, required method for game
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function(dt) {
-    //var loc = (0, 2);//????
+    //var locX = 2;
+	 // var locY = 0;
 		// You should multiply any movement by the dt parameter
-		//loc = (loc + ***input*** ) * dt);
+		//this.locX = (this.locX + ***input*** ) * dt);
+		//this.locY = (this.locY + ***input*** ) * dt);
+
 		// which will ensure the game runs at the same speed for
     // all computers.
 };
@@ -62,26 +73,26 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-/*
-Player.prototype.handleInput = function() {
-	if (keypress === 37) {
+
+Player.prototype.handleInput = function(e) {
+	if (e === 37) {
    //move left
    return this.locX -= 1;
-  } else if (keypress === 38) {
+ } else if (e === 38) {
    //move up
    return this.locY += 1;
-  } else if (keypress === 39) {
+ } else if (e === 39) {
    //move right
    return this.locX += 1;
-  } else if (keypress === 40) {
+ } else if (e === 40) {
    //move down
-   return this.locY, -= 1;
+   return this.locY -= 1;
   } else {
    //don't move;
    return;
    }
 };
-    */
+
 
 // Now instantiate your objects.
 //enemy (x, y, speed)
